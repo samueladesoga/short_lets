@@ -1,0 +1,30 @@
+<h1>Listing Apartments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Address</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for apartment <- @apartments do %>
+    <tr>
+      <td><%= apartment.name %></td>
+      <td><%= apartment.description %></td>
+      <td><%= apartment.address %></td>
+
+      <td>
+        <%= link "Show", to: Routes.apartment_path(@conn, :show, apartment) %>
+        <%= link "Edit", to: Routes.apartment_path(@conn, :edit, apartment) %>
+        <%= link "Delete", to: Routes.apartment_path(@conn, :delete, apartment), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Apartment", to: Routes.apartment_path(@conn, :new) %></span>

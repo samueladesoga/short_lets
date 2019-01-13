@@ -1,0 +1,23 @@
+<h1>Show Apartment</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @apartment.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @apartment.description %>
+  </li>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @apartment.address %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.apartment_path(@conn, :edit, @apartment) %></span>
+<span><%= link "Back", to: Routes.apartment_path(@conn, :index) %></span>
