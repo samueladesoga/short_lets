@@ -7,6 +7,7 @@ defmodule ShortLets.Accounts.Apartment do
     field :address, :string
     field :description, :string
     field :name, :string
+    has_many :photos, ShortLets.Accounts.Photo
 
     timestamps()
   end

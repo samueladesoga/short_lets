@@ -1,0 +1,28 @@
+<h1>Listing Photos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Apartment</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for photo <- @photos do %>
+    <tr>
+      <td><%= photo.image %></td>
+      <td><%= photo.apartment_id %></td>
+
+      <td>
+        <%= link "Show", to: Routes.photo_path(@conn, :show, photo) %>
+        <%= link "Edit", to: Routes.photo_path(@conn, :edit, photo) %>
+        <%= link "Delete", to: Routes.photo_path(@conn, :delete, photo), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Photo", to: Routes.photo_path(@conn, :new) %></span>

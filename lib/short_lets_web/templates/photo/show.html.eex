@@ -1,0 +1,18 @@
+<h1>Show Photo</h1>
+
+<ul>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @photo.image %>
+  </li>
+
+  <li>
+    <strong>Apartment:</strong>
+    <%= @photo.apartment_id %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.photo_path(@conn, :edit, @photo) %></span>
+<span><%= link "Back", to: Routes.photo_path(@conn, :index) %></span>

@@ -18,6 +18,7 @@ defmodule ShortLetsWeb.Router do
 
     get "/", PageController, :index
     resources "/apartments", ApartmentController
+    resources "/photos", PhotoController
   end
 
   # Other scopes may use custom stacks.
