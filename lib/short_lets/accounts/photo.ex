@@ -4,8 +4,7 @@ defmodule ShortLets.Accounts.Photo do
 
 
   schema "photos" do
-    field :apartment_id, :string
-    field :image, :string
+    field :image_url, :string
     belongs_to :apartment, ShortLets.Accounts.Apartment
 
     timestamps()
@@ -14,7 +13,7 @@ defmodule ShortLets.Accounts.Photo do
   @doc false
   def changeset(photo, attrs) do
     photo
-    |> cast(attrs, [:image, :apartment_id])
-    |> validate_required([:image, :apartment_id])
+    |> cast(attrs, [:image_url, :apartment_id])
+    |> validate_required([:image_url, :apartment_id])
   end
 end
