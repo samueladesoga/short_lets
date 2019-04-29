@@ -20,7 +20,7 @@ defmodule ShortLets.MixProject do
   def application do
     [
       mod: {ShortLets.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ex_aws, :hackney, :poison]
+      extra_applications: [:logger, :runtime_tools, :ex_aws, :hackney, :poison, :arc_ecto]
     ]
   end
 
@@ -43,8 +43,10 @@ defmodule ShortLets.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:arc, "~> 0.11.0"},
       {:ex_aws, "~> 2.0"},
       {:ex_aws_s3, "~> 2.0"},
+      {:arc_ecto, "~> 0.11.1"},
       {:poison, "~> 3.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},

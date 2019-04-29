@@ -15,19 +15,7 @@ defmodule ShortLetsWeb.PhotoController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"photo" => %{"image" => file_params } = photo_params}) do
-    file_uuid = UUID.uuid4(:hex)
-    photo_file_name = file_params.filename
-    unique_file_name = "#{file_uuid}-#{photo_file_name}"
-    {:ok, image_binary} = File.read(file_params.path)
-    bucket_name = System.get_env("BUCKET_NAME")
-    image = ExAws.S3.put_object(bucket_name, unique_file_name, image_binary)
-            |> ExAws.request!
-    updated_params = photo_params 
-                      |> Map.update(image, file_params, 
-                        fn _value -> "https://#{bucket_name}.s3.amazonaws.com/#{unique_file_name}"
-                      end)        
-    IEx.pry              
+  def create(conn, %{"photo" => photo_params}) do                    
     case Accounts.create_photo(photo_params) do
       {:ok, photo} ->
         conn
@@ -35,7 +23,6 @@ defmodule ShortLetsWeb.PhotoController do
         |> redirect(to: Routes.photo_path(conn, :show, photo))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IEx.pry
         render(conn, "new.html", changeset: changeset)
     end
   end

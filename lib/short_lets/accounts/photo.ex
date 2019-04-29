@@ -1,10 +1,13 @@
 defmodule ShortLets.Accounts.Photo do
   use Ecto.Schema
+  use Arc.Ecto.Schema
   import Ecto.Changeset
 
 
   schema "photos" do
-    field :image_url, :string
+    field :image, ShortLets.Photo.Type
+    field :uuid, :string
+
     belongs_to :apartment, ShortLets.Accounts.Apartment
 
     timestamps()
@@ -13,7 +16,8 @@ defmodule ShortLets.Accounts.Photo do
   @doc false
   def changeset(photo, attrs) do
     photo
-    |> cast(attrs, [:image_url, :apartment_id])
-    |> validate_required([:image_url, :apartment_id])
+    |> Map.update(:uuid, Ecto.UUID.generate, fn val -> val || Ecto.UUID.generate end)
+    |> cast_attachments(attrs, [:image])
+    |> validate_required([:image])
   end
 end

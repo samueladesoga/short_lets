@@ -1,3 +1,4 @@
+require IEx
 defmodule ShortLets.Accounts do
   @moduledoc """
   The Accounts context.
@@ -145,9 +146,10 @@ defmodule ShortLets.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_photo(attrs \\ %{}) do
+  def create_photo(%Apartment{} = apartment, attrs \\ %{}) do
     %Photo{}
     |> Photo.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:apartment, apartment)
     |> Repo.insert()
   end
 

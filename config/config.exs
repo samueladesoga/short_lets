@@ -26,6 +26,8 @@ config :ex_aws,
     host: "#{System.get_env("BUCKET_NAME")}.s3.amazonaws.com",
     region: "eu-west-2" 
   ]
+config :arc,
+  storage: Arc.Storage.Local
 
 # Configures Elixir's Logger
 config :logger, :console,
