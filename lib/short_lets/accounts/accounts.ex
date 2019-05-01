@@ -146,10 +146,9 @@ defmodule ShortLets.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_photo(%Apartment{} = apartment, attrs \\ %{}) do
+  def create_photo(attrs \\ %{}) do
     %Photo{}
     |> Photo.changeset(attrs)
-    |> Ecto.Changeset.put_assoc(:apartment, apartment)
     |> Repo.insert()
   end
 

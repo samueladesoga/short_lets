@@ -5,10 +5,15 @@ defmodule ShortLets.Photo do
   # Include ecto support (requires package arc_ecto installed):
   # use Arc.Ecto.Definition
 
+  @extension_whitelist ~w(.jpg .jpeg .gif .png)
+
   @versions [:original, :thumb]
 
+  @acl :public_read
+
   def validate({file, _}) do
-    ~w(.jpg .jpeg .png) |> Enum.member?(Path.extname(file.file_name))
+    file_extension = file.file_name |> Path.extname() |> String.downcase()
+    Enum.member?(@extension_whitelist, file_extension)
   end
 
   def transform(:thumb, _) do

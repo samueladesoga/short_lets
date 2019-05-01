@@ -12,7 +12,10 @@
   <tbody>
 <%= for photo <- @photos do %>
     <tr>
-      <td><%= photo.image %></td>
+      <td><%= 
+              ShortLets.Photo.url({photo.image, photo}, :thumb)
+              |> img_tag()
+          %></td>
       <td><%= photo.apartment_id %></td>
 
       <td>
